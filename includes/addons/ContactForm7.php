@@ -44,6 +44,34 @@ class AMPFE_ContactForm7 extends \Elementor\Widget_Base {
     }
 
     /**
+     * Get style dependencies.
+     *
+     * Retrieve the list of style dependencies the element requires.
+     *
+     * @since 1.9.0
+     * @access public
+     *
+     * @return array Element styles dependencies.
+     */
+    public function get_style_depends() {
+        return $this->depended_styles;
+    }
+    
+    /**
+     * Retrieve the list of scripts the counter widget depended on.
+     *
+     * Used to set scripts dependencies required to run the widget.
+     *
+     * @since 1.3.0
+     * @access public
+     *
+     * @return array Widget scripts dependencies.
+     */
+    public function get_script_depends() {
+        //return [ 'jquery-numerator' ];
+    }
+
+    /**
      * Get widget categories.
      *
      * Retrieve the list of categories the  widget belongs to.
@@ -62,16 +90,16 @@ class AMPFE_ContactForm7 extends \Elementor\Widget_Base {
 
         $args = array('post_type' => 'wpcf7_contact_form', 'posts_per_page' => -1);
     
-            $catlist=[];
-            
-            if( $categories = get_posts($args)){
-                foreach ( $categories as $category ) {
-                    (int)$catlist[$category->ID] = $category->post_title;
-                }
+        $catlist=[];
+        
+        if( $categories = get_posts($args)){
+            foreach ( $categories as $category ) {
+                (int)$catlist[$category->ID] = $category->post_title;
             }
-            else{
-                (int)$catlist['0'] = esc_html__('No contect From 7 form found', 'ampfe');
-            }
+        } else{
+            (int)$catlist['0'] = esc_html__('No contect From 7 form found', 'ampfe');
+        }
+
         return $catlist;
     }
 

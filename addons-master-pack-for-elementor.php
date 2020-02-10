@@ -29,7 +29,7 @@ require_once( dirname( __FILE__ ) . '/includes/class-addon-master-pack.php' );
 /**
  *	Main Function Initial
  */
-function AMPDE_AddonMasterPackInit(){
-	AMPDE_AddonMasterPack::instance();
+function ampfe_addon_master_pack_init(){
+	AMPFE_AddonMasterPack::instance();
 }
-AMPDE_AddonMasterPackInit();
+ampfe_addon_master_pack_init();

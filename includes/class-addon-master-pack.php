@@ -1,6 +1,6 @@
 <?php
 
-final class AMPDE_AddonMasterPack {
+final class AMPFE_AddonMasterPack {
 
 	/**
 	 * Plugin Version
@@ -74,6 +74,10 @@ final class AMPDE_AddonMasterPack {
 		add_action( 'init', [ $this, 'i18n' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 
+
+		add_action( 'admin_menu', [ $this, 'add_menu_page'] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts'], 15 );
+
 	}
 
 	/**
@@ -91,6 +95,80 @@ final class AMPDE_AddonMasterPack {
 
 		load_plugin_textdomain( 'ampfe' );
 
+	}
+
+	/**
+	 * Register menu page.
+	 */
+	function admin_scripts(){
+	    wp_enqueue_style( 'ampfe', ADDONMASTER_PACK_URL . '/assets/admin/css/am-setting-page.css' );
+	    wp_enqueue_script( 'ampfe-admin', ADDONMASTER_PACK_URL . '/assets/admin/js/ampfe-admin.js' );
+	}
+
+	/**
+	 * Register menu page.
+	 */
+	function add_menu_page(){
+	    add_menu_page(
+            __('Addon Master Pack for Elementor', 'ampfe'),
+            __('Addon Master Pack for Elementor', 'ampfe'),
+            'manage_options',
+            'ampfe-settings',
+            [$this, 'ampfe_admin_settings_page'],
+            ADDONMASTER_PACK_URL . '/assets/admin/img/amfe-logo.svg',
+            '58.6'
+        );
+	}
+ 
+	/**
+	 * Display a custom menu page
+	 */
+	function ampfe_admin_settings_page(){
+		?>
+	    <div id="amadmin-dashboard" class="wrap amadmin-wrap">
+			<div class="welcome-head am-clearfix">
+			    <div class="am-row">
+			        <div class="am-col-sm-9">
+			            <h1> Addon Master Pack for Elementor  </h1>
+			            <div class="am-welcome">
+			                <!-- <p> -->
+			                <strong>Addon Master Pack for Elementor</strong> - Most Powerful Addons &amp; Easy to Use for Elementor <span><a href="" target="_blank">Rate the plugin ★★★★★</a></span>
+			                <!-- </p> -->
+			            </div>
+			        </div>
+			        <div class="am-col-sm-3">
+			            <img width="80" src="<?php echo ADDONMASTER_PACK_URL . '/assets/admin/img/AddonMasterPackElementorLogo.svg'; ?>">
+			            <span class="am-theme-version">Version 5.1.0</span>
+			        </div>
+			    </div>
+			</div>
+			<div class="am-tab-container-wrap am-clearfix">
+				<div class="am-row">
+					<div class="am-col-sm-12">
+						<div class="am-clearfix amsetting-wrap">
+							<div class="am-box-head">
+								<ul class="am-tab-nav">
+									<li class="active"><a href="#general"><?php echo esc_html__('General','ampfe'); ?></a></li>
+									<li><a href="#addons"><?php echo esc_html__('Addons','ampfe'); ?></a></li>
+								</ul>
+							</div>
+							<div class="am-box-content am-box">
+								<div class="am-tab-container">
+									<div id="general" class="am-tab-content active">
+										afasf
+									</div>
+									<div id="addons" class="am-tab-content">
+										asfasf
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+
+	    <?php
 	}
 
 	/**
@@ -147,12 +225,18 @@ final class AMPDE_AddonMasterPack {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elementor-test-extension' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'elementor-test-extension' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elementor-test-extension' ) . '</strong>'
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'ampfe' ),
+			'<strong>' . esc_html__( 'Addon Master Pack', 'ampfe' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'ampfe' ) . '</strong>'
+		);
+		$active_msg = sprintf(
+			/* translators: 1: Plugin name 2: Elementor */
+			__( '<a href="%1$s" class="button-primary">%2$s</a>', 'ampfe' ),
+			admin_url( '/plugin-install.php?s=Elementor&tab=search&type=term' ),
+			esc_html__( 'Activate Elementor', 'ampfe' )
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+		printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p><p>%2$s</p></div>', $message, $active_msg );
 
 	}
 
@@ -171,9 +255,9 @@ final class AMPDE_AddonMasterPack {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-test-extension' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'elementor-test-extension' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elementor-test-extension' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'ampfe' ),
+			'<strong>' . esc_html__( 'Addon Master Pack', 'ampfe' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'ampfe' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
 
@@ -196,9 +280,9 @@ final class AMPDE_AddonMasterPack {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-test-extension' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'elementor-test-extension' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'elementor-test-extension' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'ampfe' ),
+			'<strong>' . esc_html__( 'Elementor Test Extension', 'ampfe' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'ampfe' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
 
@@ -214,7 +298,7 @@ final class AMPDE_AddonMasterPack {
        $elements_manager->add_category(
            'addon-master-pack',
            [
-               'title' => __( 'Addon Master', 'ampfe' ),
+               'title' => __( 'Addon Master Pack', 'ampfe' ),
                'icon' => 'fa fa-plug',
            ]
        );
