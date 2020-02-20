@@ -154,12 +154,79 @@ final class AMPFE_AddonMasterPack {
 							</div>
 							<div class="am-box-content am-box">
 								<div class="am-tab-container">
+									<!-- Start general tab -->
 									<div id="general" class="am-tab-content active">
-										afasf
+										<div class="am-row">
+											<div class="am-col-sm-6">
+												<div class="am-minibox">
+													<div class="icon-area">
+														<img src="<?php echo ADDONMASTER_PACK_URL . '/assets/admin/img/support.svg'; ?>" alt="">
+													</div>
+													<div class="am-content-area">
+														<h4>Any Help Needed?</h4>
+														<div class="am-content">
+															<p>Are you stuck with something? or Do you need any <strong>Custom Addon</strong> to be added? Just let us know</p>
+														</div>
+
+														<div class="am-btn-group">
+															<a href="#" class="am-main-btn">Support Forum</a>
+															<a href="#" class="am-main-btn">Facebook Group</a>
+															<a href="#" class="am-main-btn">Live Chat</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="am-col-sm-6">
+												<div class="am-minibox">
+													<div class="icon-area">
+														<img src="<?php echo ADDONMASTER_PACK_URL . '/assets/admin/img/support.svg'; ?>" alt="">
+													</div>
+													<div class="am-content-area">
+														<h4>Any Help Needed?</h4>
+														<div class="am-content">
+															<p>Are you stuck with something? or Do you need any <strong>Custom Addon</strong> to be added? Just let us know</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="am-col-sm-6">
+												<div class="am-minibox">
+													<div class="icon-area">
+														<img src="<?php echo ADDONMASTER_PACK_URL . '/assets/admin/img/support.svg'; ?>" alt="">
+													</div>
+													<div class="am-content-area">
+														<h4>Any Help Needed?</h4>
+														<div class="am-content">
+															<p>Are you stuck with something? or Do you need any <strong>Custom Addon</strong> to be added? Just let us know</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</div>
+									<!-- End general tab -->
+									<!-- Start addon tab -->
 									<div id="addons" class="am-tab-content">
-										asfasf
+										<div class="am-row">
+											<?php for($i=0; $i<16; $i++):?>
+											<div class="am-col-sm-3">
+												<div class="am-minibox addons-box">
+													<div class="icon-area">
+														<img src="<?php echo ADDONMASTER_PACK_URL . '/assets/admin/img/support.svg'; ?>" alt="">
+													</div>
+													<div class="am-content-area">
+														<h4>Your Addon Name</h4>
+													</div>
+													<div class="am-switch">
+														<input type="checkbox" id="switch-<?php _e($i);?>" checked="checked" /><label for="switch-<?php _e($i);?>">Toggle</label>
+													</div>
+												</div>
+											</div>
+											<?php endfor; ?>
+										</div>
 									</div>
+									<!-- End addons tab -->
 								</div>
 							</div>
 						</div>

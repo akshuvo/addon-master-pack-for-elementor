@@ -54,7 +54,7 @@ class AMPFE_ContactForm7 extends \Elementor\Widget_Base {
      * @return array Element styles dependencies.
      */
     public function get_style_depends() {
-        return $this->depended_styles;
+        //return $this->depended_styles;
     }
     
     /**
