@@ -384,10 +384,11 @@ final class AMPFE_AddonMasterPack {
 
         // Include Widget files
         require_once( __DIR__ . '/addons/ContactForm7.php' );
+        require_once( __DIR__ . '/addons/VideoModalGrid.php' );
 
         // Register widget
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \AMPFE_ContactForm7() );
-
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \AMPFE_VideoModalGrid() );
 	}
 
 	/**
