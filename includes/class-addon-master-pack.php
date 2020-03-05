@@ -106,6 +106,15 @@ final class AMPFE_AddonMasterPack {
 	}
 
 	/**
+	 * Register Scripts
+	 */
+	function register_scripts(){
+	    //wp_register_style( 'video-modal-grid', ADDONMASTER_PACK_URL . '/assets/video-modal-grid/video-modal-grid.css' );
+	    wp_register_script( 'lazysizes', ADDONMASTER_PACK_URL . '/assets/frontend/js/lazysizes.js' );
+	    
+	}
+
+	/**
 	 * Register menu page.
 	 */
 	function add_menu_page(){
@@ -275,6 +284,12 @@ final class AMPFE_AddonMasterPack {
 		add_action( 'elementor/elements/categories_registered', array( $this, 'add_elementor_category' ) );
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
 		//add_action( 'elementor/controls/controls_registered', [ $this, 'init_controls' ] );
+
+		//Register Widget Styles
+		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'register_scripts' ] );
+		
+		// Register Widget Scripts
+		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_scripts' ] );
 	}
 
 	/**
@@ -385,10 +400,12 @@ final class AMPFE_AddonMasterPack {
         // Include Widget files
         require_once( __DIR__ . '/addons/ContactForm7.php' );
         require_once( __DIR__ . '/addons/VideoModalGrid.php' );
+        require_once( __DIR__ . '/addons/LazyImage.php' );
 
         // Register widget
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \AMPFE_ContactForm7() );
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \AMPFE_VideoModalGrid() );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \AMPFE_LazyImage() );
 	}
 
 	/**

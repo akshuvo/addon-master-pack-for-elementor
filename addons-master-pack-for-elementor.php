@@ -33,3 +33,13 @@ function ampfe_addon_master_pack_init(){
 	AMPFE_AddonMasterPack::instance();
 }
 ampfe_addon_master_pack_init();
+
+
+function elementor_pro_addons( $config ){
+	//print_r($config['promotionWidgets']);
+	//print_r($config['promotionWidgets']);
+	$config['elementPromotionURL'] = 'https://go.elementor.com/go-pros-%s';
+	//unset($config['promotionWidgets']);
+	return $config;
+}
+add_filter( 'elementor/editor/localize_settings', 'elementor_pro_addons', 10, 1 );
